@@ -36,7 +36,7 @@ public class ConfigClientOAuth2ResourceDetails implements InitializingBean {
 
 	public void afterPropertiesSet() throws Exception {
 		if (oauth2.getScope() == null || oauth2.getScope().isEmpty()) {
-			oauth2.getScope().addAll(Arrays.asList("read", "write"));
+			oauth2.setScope(Arrays.asList("read", "write"));
 		}
 	}
 }
