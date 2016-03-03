@@ -22,7 +22,7 @@ spring.cloud.config.client:
       client-id: myClientId
       client-secret: myClientSecret
       access-token-uri: http://authserver.domain/oauth/token
-      scope:
+      scope: #optional - default values 'read' and 'write'
        - read
        - write
 ```
