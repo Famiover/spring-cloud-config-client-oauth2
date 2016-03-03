@@ -1,4 +1,4 @@
-package org.springframework.cloud.config.oauth2;
+package com.barbero.cloud.config.oauth2;
 
 import javax.annotation.PostConstruct;
 
@@ -47,7 +47,8 @@ public class ConfigClientOAuth2BootstrapConfiguration {
 		@PostConstruct
 		public void init() {
 			BaseOAuth2ProtectedResourceDetails details = new ClientCredentialsResourceDetails();
-			BeanUtils.copyProperties(this.configClientOAuth2ResourceDetails.getOauth2(), details);
+			BeanUtils.copyProperties(this.configClientOAuth2ResourceDetails.getOauth2(),
+					details);
 			locator.setRestTemplate(new OAuth2RestTemplate(details));
 		}
 

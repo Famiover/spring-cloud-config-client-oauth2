@@ -8,18 +8,17 @@ Import dependency to your project
 
 ```
 <dependency>
-    <groupId>org.springframework.cloud</groupId>
+    <groupId>com.barbero.cloud</groupId>
     <artifactId>spring-cloud-config-client-oauth2</artifactId>
-    <version>$LATEST_VERSION</version>
+    <version>${spring-cloud-config-client-oauth2.version}</version>
 </dependency>
 ```
 
 Configure the following properties on bootstrap.yml
 
 ```
-spring:
-  cloud.config:  
-    client.oauth2:
+spring.cloud.config.client:  
+    oauth2:
       client-id: myClientId
       client-secret: myClientSecret
       access-token-uri: http://authserver.domain/oauth/token

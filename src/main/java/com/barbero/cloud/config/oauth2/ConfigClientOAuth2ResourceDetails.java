@@ -1,4 +1,4 @@
-package org.springframework.cloud.config.oauth2;
+package com.barbero.cloud.config.oauth2;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.client.token.grant.client.ClientCrede
 @Data
 @ConfigurationProperties(ConfigClientOAuth2ResourceDetails.PREFIX)
 public class ConfigClientOAuth2ResourceDetails {
-    public static final String PREFIX = "spring.cloud.config.client";
+	public static final String PREFIX = "spring.cloud.config.client";
 
 	private BaseOAuth2ProtectedResourceDetails oauth2 = new ClientCredentialsResourceDetails();
 }

@@ -3,22 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.barbero.cloud</groupId>
     <artifactId>spring-cloud-config-client-oauth2</artifactId>
     <name>Spring Cloud Config Client OAuth2</name>
     <packaging>jar</packaging>
     <version>1.0.0.RELEASE</version>
     <description>
         <![CDATA[
-      This project is a Spring configuration client with OAuth2 authentication.
+      This project is a Spring Config Client with OAuth2 authentication.
     ]]>
     </description>
-
-    <parent>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-config</artifactId>
-        <version>1.0.2.RELEASE</version>
-        <relativePath/>
-    </parent>
 
     <properties>
         <lombok.version>1.16.6</lombok.version>
@@ -32,6 +26,18 @@
             <timezone>BRT</timezone>
         </developer>
     </developers>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config</artifactId>
+                <version>1.0.4.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 
