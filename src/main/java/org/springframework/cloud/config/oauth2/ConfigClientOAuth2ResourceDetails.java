@@ -1,19 +1,18 @@
 package org.springframework.cloud.config.oauth2;
 
-import java.util.List;
-
 import lombok.Data;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.security.oauth2.client.resource.BaseOAuth2ProtectedResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
 /**
  * @author Marcos Barbero
  */
 @Data
-@ConfigurationProperties("spring.cloud.config.client.oauth2")
+@ConfigurationProperties(ConfigClientOAuth2ResourceDetails.PREFIX)
 public class ConfigClientOAuth2ResourceDetails {
-    private String clientId;
-    private String clientSecret;
-    private String accessTokenUri;
-    private List<String> scope;
+    public static final String PREFIX = "spring.cloud.config.client";
+
+	private BaseOAuth2ProtectedResourceDetails oauth2 = new ClientCredentialsResourceDetails();
 }

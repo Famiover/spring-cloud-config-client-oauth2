@@ -6,6 +6,7 @@
     <artifactId>spring-cloud-config-client-oauth2</artifactId>
     <name>Spring Cloud Config Client OAuth2</name>
     <packaging>jar</packaging>
+    <version>1.0.0.RELEASE</version>
     <description>
         <![CDATA[
       This project is a Spring configuration client with OAuth2 authentication.

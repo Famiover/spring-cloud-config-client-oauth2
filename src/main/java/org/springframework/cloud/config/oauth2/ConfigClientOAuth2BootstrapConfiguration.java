@@ -20,35 +20,36 @@ import org.springframework.security.oauth2.client.token.grant.client.ClientCrede
  */
 @Configuration
 @EnableConfigurationProperties(ConfigClientOAuth2ResourceDetails.class)
-@ConditionalOnClass({ConfigServicePropertySourceLocator.class, OAuth2RestTemplate.class})
+@ConditionalOnClass({ ConfigServicePropertySourceLocator.class,
+		OAuth2RestTemplate.class })
 @ConditionalOnProperty(value = "spring.cloud.config.client.oauth2.clientId")
 public class ConfigClientOAuth2BootstrapConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean(ConfigClientOAuth2ResourceDetails.class)
-    public ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails() {
-        return new ConfigClientOAuth2ResourceDetails();
-    }
+	@Bean
+	@ConditionalOnMissingBean(ConfigClientOAuth2ResourceDetails.class)
+	public ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails() {
+		return new ConfigClientOAuth2ResourceDetails();
+	}
 
-    @Bean
-    protected ConfigClientOAuth2Configurer configClientOAuth2Configurator() {
-        return new ConfigClientOAuth2Configurer();
-    }
+	@Bean
+	protected ConfigClientOAuth2Configurer configClientOAuth2Configurator() {
+		return new ConfigClientOAuth2Configurer();
+	}
 
-    protected static class ConfigClientOAuth2Configurer {
+	protected static class ConfigClientOAuth2Configurer {
 
-        @Autowired
-        private ConfigServicePropertySourceLocator locator;
+		@Autowired
+		private ConfigServicePropertySourceLocator locator;
 
-        @Autowired
-        private ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails;
+		@Autowired
+		private ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails;
 
-        @PostConstruct
-        public void init() {
-            BaseOAuth2ProtectedResourceDetails details = new ClientCredentialsResourceDetails();
-            BeanUtils.copyProperties(configClientOAuth2ResourceDetails, details);
-            locator.setRestTemplate(new OAuth2RestTemplate(details));
-        }
+		@PostConstruct
+		public void init() {
+			BaseOAuth2ProtectedResourceDetails details = new ClientCredentialsResourceDetails();
+			BeanUtils.copyProperties(this.configClientOAuth2ResourceDetails.getOauth2(), details);
+			locator.setRestTemplate(new OAuth2RestTemplate(details));
+		}
 
-    }
+	}
 }
