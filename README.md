@@ -10,7 +10,7 @@ Import dependency to your project
 <dependency>
     <groupId>com.marcosbarbero.cloud</groupId>
     <artifactId>spring-cloud-config-client-oauth2</artifactId>
-    <version>${spring-cloud-config-client-oauth2.version}</version>
+    <version>1.0.0.RELEASE</version>
 </dependency>
 ```
 
