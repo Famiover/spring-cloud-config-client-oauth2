@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.barbero.cloud.config.oauth2;
+package com.marcosbarbero.cloud.config.oauth2;
 
 import javax.annotation.PostConstruct;
 

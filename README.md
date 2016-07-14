@@ -8,7 +8,7 @@ Import dependency to your project
 
 ```
 <dependency>
-    <groupId>com.barbero.cloud</groupId>
+    <groupId>com.marcosbarbero.cloud</groupId>
     <artifactId>spring-cloud-config-client-oauth2</artifactId>
     <version>${spring-cloud-config-client-oauth2.version}</version>
 </dependency>
