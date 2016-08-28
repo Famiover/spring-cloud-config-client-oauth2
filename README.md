@@ -4,7 +4,7 @@ Spring Cloud Config Client that talks to Config Server with OAuth2 authenticatio
 
 Usage
 ---
->This project is available on maven central
+>This project is available on maven central  
 Import dependency to your project
 
 ```
