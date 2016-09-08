@@ -43,6 +43,7 @@ public class ConfigClientOAuth2BootstrapConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(value = "spring.cloud.config.enabled", matchIfMissing = true)
     protected ConfigClientOAuth2Configurer configClientOAuth2Configurator(ConfigServicePropertySourceLocator locator,
                                                                           ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails) {
         return new ConfigClientOAuth2Configurer(locator, configClientOAuth2ResourceDetails);
