@@ -15,7 +15,6 @@
  */
 package com.marcosbarbero.cloud.config.oauth2;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -44,22 +43,26 @@ public class ConfigClientOAuth2BootstrapConfiguration {
     }
 
     @Bean
-    protected ConfigClientOAuth2Configurer configClientOAuth2Configurator() {
-        return new ConfigClientOAuth2Configurer();
+    protected ConfigClientOAuth2Configurer configClientOAuth2Configurator(ConfigServicePropertySourceLocator locator,
+                                                                          ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails) {
+        return new ConfigClientOAuth2Configurer(locator, configClientOAuth2ResourceDetails);
     }
 
     protected static class ConfigClientOAuth2Configurer {
 
-        @Autowired
-        private ConfigServicePropertySourceLocator locator;
+        private final ConfigServicePropertySourceLocator locator;
 
-        @Autowired
-        private ConfigClientOAuth2ResourceDetails resourceDetails;
+        private final ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails;
+
+        public ConfigClientOAuth2Configurer(ConfigServicePropertySourceLocator locator,
+                                            ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails) {
+            this.locator = locator;
+            this.configClientOAuth2ResourceDetails = configClientOAuth2ResourceDetails;
+        }
 
         @PostConstruct
         public void init() {
-            final OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(this.resourceDetails.getOauth2());
-            this.locator.setRestTemplate(restTemplate);
+            this.locator.setRestTemplate(new OAuth2RestTemplate(this.configClientOAuth2ResourceDetails.getOauth2()));
         }
 
     }
