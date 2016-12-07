@@ -22,6 +22,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.config.client.ConfigServicePropertySourceLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -31,18 +32,19 @@ import javax.annotation.PostConstruct;
  */
 @Configuration
 @EnableConfigurationProperties(ConfigClientOAuth2ResourceDetails.class)
-@ConditionalOnClass({ConfigServicePropertySourceLocator.class,
-        OAuth2RestTemplate.class})
+@ConditionalOnClass({ConfigServicePropertySourceLocator.class, OAuth2RestTemplate.class})
 @ConditionalOnProperty(value = ConfigClientOAuth2ResourceDetails.PREFIX + ".oauth2.clientId")
 public class ConfigClientOAuth2BootstrapConfiguration {
 
     @Bean
+    @Primary
     @ConditionalOnMissingBean(ConfigClientOAuth2ResourceDetails.class)
     public ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails() {
         return new ConfigClientOAuth2ResourceDetails();
     }
 
     @Bean
+    @Primary
     @ConditionalOnProperty(value = "spring.cloud.config.enabled", matchIfMissing = true)
     protected ConfigClientOAuth2Configurer configClientOAuth2Configurator(ConfigServicePropertySourceLocator locator,
                                                                           ConfigClientOAuth2ResourceDetails configClientOAuth2ResourceDetails) {
@@ -67,4 +69,5 @@ public class ConfigClientOAuth2BootstrapConfiguration {
         }
 
     }
+
 }
